@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApplicationKolos1.Repositories;
 
 namespace WebApplicationKolos1.Controllers;
 
@@ -7,11 +8,17 @@ namespace WebApplicationKolos1.Controllers;
 [ApiController]
 public class BookController : ControllerBase
 {
+    private readonly IBookRepository _bookRepository;
+
+    public BookController(IBookRepository bookRepository)
+    {
+        _bookRepository = bookRepository;
+    }
 
     [HttpGet("{id}/authors")]
     public async Task<IActionResult> GetBookAuthors(int id)
     {
-        
-        return Ok();
+        var book = await _bookRepository.GetBookAuthors(id);
+        return Ok(book);
     }
 }
