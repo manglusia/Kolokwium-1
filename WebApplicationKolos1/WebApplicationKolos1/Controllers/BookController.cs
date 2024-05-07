@@ -8,9 +8,10 @@ namespace WebApplicationKolos1.Controllers;
 public class BookController : ControllerBase
 {
 
-    [HttpGet]
-    public async Task<IActionResult> Get()
+    [HttpGet("{id}/authors")]
+    public async Task<IActionResult> GetBookAuthors(int id)
     {
         
+        return Ok();
     }
 }
